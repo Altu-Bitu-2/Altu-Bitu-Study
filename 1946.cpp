@@ -5,11 +5,11 @@
 using namespace std;
 int check(vector<pair<int, int>> v, int n){
     int count = 1;
-    int std = v[0].second;
+    int standard = v[0].second;
     for (int i = 1; i < n; i++) {
         if (v[i].second < std){
             count++;
-            std = v[i].second;
+            standard = v[i].second;
         }
     }
     return count;

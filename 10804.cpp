@@ -6,7 +6,7 @@ using namespace std;
 
 //주소값으로 받아야 정렬이 됨!!
 void swapArr(vector<int> &arr, int start, int end) {
-    while (start < end || start == end) {
+    while (start <= end) {
         swap(arr[start], arr[end]);
         start++;
         end--;
