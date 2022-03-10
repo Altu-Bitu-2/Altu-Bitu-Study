@@ -16,7 +16,10 @@ int main() {
     //int 대신 long long 써야함
     long long sum = 0;
     for (int i = 0; i < n; i++) {
-        sum += max(0, arr[i] - i);
+        if (arr[i] < i) {
+            break;
+        }
+        sum += arr[i] - i;
     }
     cout << sum;
 }
