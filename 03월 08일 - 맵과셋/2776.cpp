@@ -1,5 +1,5 @@
 #include <iostream>
-#include <set>
+#include <unordered_map> //정렬되지 않은 컨테이너
 
 using namespace std;
 
@@ -10,25 +10,24 @@ int main() {
     //입력
     int t;
     cin >> t;
-
     while (t--) {
-        int n, m, one, two;
-        set<int> s;
+        int n, m;
         cin >> n;
-
-        // set에 입력값 저장, 중복 제거
+        unordered_map<int, bool> numbers;
         for (int i = 0; i < n; i++) {
+            int one;
             cin >> one;
-            s.insert(one);
+            numbers[one] = true;
         }
         cin >> m;
-        //해당 셋에 있는 지 검사
         for (int i = 0; i < m; i++) {
+            int two;
             cin >> two;
-            if (s.find(two) != s.end())
-                cout << 1 << "\n";
-            else
-                cout << 0 << "\n";
+            if (numbers[two]) {
+                cout << "1\n";
+            } else {
+                cout << "0\n";
+            }
         }
     }
     return 0;

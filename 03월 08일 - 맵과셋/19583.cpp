@@ -4,42 +4,30 @@
 
 using namespace std;
 
-long long calculateMin(int hour, int min) {
-    return hour * 60 + min;
-}
-
 int main() {
     string s, e, q;
     map<string, int> m;
     cin >> s >> e >> q;
-    int start_hour = stoi(s.substr(0, 2));
-    int start_min = stoi(s.substr(3, 2));
-    int end_hour = stoi(e.substr(0, 2));
-    int end_min = stoi(e.substr(3, 2));
-    int quit_hour = stoi(q.substr(0, 2));
-    int quit_min = stoi(q.substr(3, 2));
 
-    freopen("input.txt", "r", stdin);
-
-    while (!cin.eof()) {
-        string time, name;
-        int hour, min;
-        cin >> time >> name;
-        hour = stoi(time.substr(0, 2));
-        min = stoi(time.substr(3, 2));
-        if (calculateMin(hour, min) <= calculateMin(start_hour, start_min)) {
+    //freopen("input.txt", "r", stdin);
+    string time, name;
+    int count = 0;
+    while (cin >> time >> name) {
+        //개강 총회 시작 전에 채팅 기록을 남긴 경우 1로 표기
+        if (time <= s) {
             m[name] = 1;
-        } else if ((calculateMin(hour, min) >= calculateMin(end_hour, end_min) &&
-                    calculateMin(hour, min) <= calculateMin(quit_hour, quit_min))) {
+        }
+        //카운트가 1이고, 개강총회가 끝난 시간 이후부터 스트리밍이 끝난 시간 내에 기록을 남긴 경우
+        if ((m[name] == 1 && time >= e && time <= q)) {
             m[name] = 2;
         }
-        int count = 0;
-        for (auto iter = m.begin(); iter != m.end(); iter++) {
-            if (iter->second == 2) {
-                count++;
-            }
-        }
-        cout << count << "\n";
     }
+    //맵을 돌면서 카운트가 2인 개수 체크
+    for (auto iter = m.begin(); iter != m.end(); iter++) {
+        if (iter->second == 2) {
+            count++;
+        }
+    }
+    cout << count << "\n";
     return 0;
 }
