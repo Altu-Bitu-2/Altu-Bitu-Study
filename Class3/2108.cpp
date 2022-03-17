@@ -7,10 +7,10 @@
 using namespace std;
 
 bool cmp(const pair<int, int> &p1, const pair<int, int> &p2) {
-    if (p1.second == p2.second) { //빈도수가 같으면
-        return p1.first < p2.first;
+    if (p1.second != p2.second) { //빈도수가 다르면
+        return p1.second > p2.second; //빈도수가 큰 순서대로
     }
-    return p1.second > p2.second; //빈도수 큰 순서대로
+    return p1.first < p2.first; //빈도수가 같으면 숫자 오름차순
 }
 
 int main() {

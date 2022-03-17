@@ -21,24 +21,34 @@ int isBalanced(string &s) {
             sum *= 3;
 
         } else if (s[i] == ')') { //닫는 소괄호가 입력된 경우
-            if (st.empty()) { //스택이 비어있었다면 괄호쌍이 잘못된 것이므로 0
+            if (st.empty() || st.top() != '(') { //스택이 비어있거나 괄호쌍이 잘못된 경우
                 tot = 0;
-            } else if (!st.empty() && st.top() == '(') { //스택의 top이 여는 소괄호라면 맞는 괄호쌍이므로
+                break;
+            } else if (s[i - 1] == '(') { //스택의 top이 여는 소괄호라면 맞는 괄호쌍이므로
                 st.pop(); //pop해주고
                 tot += sum; //전체 합에 지금까지의 sum합을 더해준다
                 sum /= 2; //곱해진 값이 끝났으므로 다시 나누어준다
+            } else { // 직전 괄호쌍이 안맞을 경우
+                st.pop();
+                sum /= 2;
             }
         } else if (s[i] == ']') {
-            if (st.empty()) {
+            if (st.empty() || st.top() != '[') { //스택이 비어있거나 괄호쌍이 잘못된 경우
                 tot = 0;
-            } else if (!st.empty() && st.top() == '[') {
+                break;
+            } else if (s[i - 1] == '[') { //스택의 top이 여는 대괄호라면 맞는 괄호쌍이므로
+                st.pop(); //pop해주고
+                tot += sum; //전체 합에 지금까지의 sum합을 더해준다
+                sum /= 3; //곱해진 값이 끝났으므로 다시 나누어준다
+            } else { //직전 괄호쌍이 안맞을 경우
                 st.pop();
-                tot += sum;
                 sum /= 3;
             }
         }
     }
-
+    if (!st.empty()) { //스택이 비어있지 않고 괄호 하나가 남을때도 잘못된 것
+        tot = 0;
+    }
     return tot;
 }
 

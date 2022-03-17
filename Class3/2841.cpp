@@ -7,7 +7,7 @@ int main() {
     int n, p;
     cin >> n >> p;
     int count = 0;
-    stack<int> st[n];
+    stack<int> st[7];
     while (n--) {
         int x, y;
         cin >> x >> y;
