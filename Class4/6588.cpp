@@ -3,15 +3,17 @@
 #include <cmath>
 
 using namespace std;
-vector<bool> is_prime(1000001, true);
+
+const int MAX = 1000000;
+vector<bool> is_prime(MAX + 1, true);
 
 //소수 검사
 void isPrime() {
     //0과 1은 소수가 아니므로 false
     is_prime[0] = is_prime[1] = false;
-    for (int i = 2; i * i <= 1000000; i++) {
+    for (int i = 2; i * i <= MAX; i++) {
         if (is_prime[i]) { // 소수라면
-            for (int j = i * i; j <= 1000000; j += i) { //소수의 배수들은 모두 소수가 아니므로 false
+            for (int j = i * i; j <= MAX; j += i) { //소수의 배수들은 모두 소수가 아니므로 false
                 is_prime[j] = false;
             }
         }
