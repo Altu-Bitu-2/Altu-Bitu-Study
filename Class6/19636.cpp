@@ -17,8 +17,8 @@ int main() {
         weight1 += I - (I_before + A); //체중 계산
         weight2 += I - (I_after + A);
         if (abs(I - (I_after + A)) > T) { //기초대사량 변화 반영하는 경우 절댓값이 역치보다 크면
-            int temp = (I - (I_after + A)) / 2; //변화 계산
-            I_after += floor(temp); //내림한 것을 기초대사량에 더해줌
+            float temp = (I - (I_after + A)) ; //변화 계산 -> 소수점 계산에 유의해야함!!
+            I_after += floor(temp/2); //내림한 것을 기초대사량에 더해줌
         }
     }
     if (weight1 <= 0) { //몸무게가 0보다 작으면
