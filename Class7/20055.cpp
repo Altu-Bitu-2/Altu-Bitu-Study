@@ -54,18 +54,16 @@ void rotateBelt() { //1. 벭트 회전시키기
 
 void operate() {
     while (true) {
+        rotateBelt();
+        moveRobot();
+        addRobot();
         if (checkZero() < k) {
-            rotateBelt();
-            moveRobot();
-            addRobot();
             step++;
         } else {
             break;
         }
     }
     cout << step << "\n";
-
-
 }
 
 int main() {

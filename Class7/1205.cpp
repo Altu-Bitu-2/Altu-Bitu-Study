@@ -4,16 +4,16 @@
 
 using namespace std;
 
-int getRank(vector<int> &rank, int score, int n) {
+int getRank(vector<int> &rank, int score, int n, int p) {
     int new_rank = 1; //새로운 랭킹 1부터 시작
-    if (n <= 0) //n이 0보다 작으면 둘째 줄 출력하지 않음
-        return -1;
-    if (score <= rank.back()) { // 새로운 점수가 맨 마지막 랭킹 점수보다 작으면
+    if (score <= rank.back() && n == p) { //랭킹이 다 차있을 경우에, 새로운 점수가 맨 마지막 랭킹 점수보다 작으면
         return -1;
     }
     for (int i = 0; i < n; i++) {//전체 랭킹을 돌면서 확인
         if (rank[i] > score) {
             new_rank++;
+        } else {
+            break;
         }
     }
 
@@ -32,7 +32,7 @@ int main() {
     if (n == 0) { //n이 0이면 새로운 점수는 무조건 1등
         cout << "1\n";
     } else {
-        cout << getRank(rank, score, n) << '\n';
+        cout << getRank(rank, score, n, p) << '\n';
     }
     return 0;
 }
