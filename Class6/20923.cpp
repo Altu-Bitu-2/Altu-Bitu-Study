@@ -19,7 +19,7 @@ void playGame(vector<deque<int>> &ground, vector<deque<int>> &cards, bool turn, 
         cards[turn].pop_front();
 
         if (cards[turn].empty()) { //카드덱이 비어있으면 break
-            break
+            break;
         }
         int bell = -1;   //종 치는 사람
         if (card == 5) { //도도가 종을 칠 수 있는 조건
