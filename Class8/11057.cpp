@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    long long dp[1001][10]; //자리수, 끝자리
+    long long dp[1001][10] = {0}; //자리수, 끝자리
     int n;
     long long answer = 0;
 
