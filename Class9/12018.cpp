@@ -14,10 +14,12 @@ int main() {
     while (n--) {
         cin >> person >> max_person;
         vector<int> v(person);
-        while (person--) {
+        int person_init = person; //처음 신청한 인원을 저장해줌
+        while (person_init--) { //신청한 인원만큼 마일리지 입력받기
             cin >> input;
             v.push_back(input);
         }
+
         sort(v.begin(), v.end(), greater<>()); //내림차순 정렬
         if (person >= max_person) { //수강인원보다 신청 인원이 같거나 많으면
             pq.push(v[max_person - 1]); //수강신청이 가능한 마일리지를 pq에 푸시해줌

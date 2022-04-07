@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void password(string &s) {
+string password(string &s) {
     string answer;
     deque<char> left;
     deque<char> right;
@@ -27,14 +27,20 @@ void password(string &s) {
             left.push_back(s[i]); //그외는 왼쪽에다가 추가
         }
     }
-    while (!right.empty()) { //오른쪽이 비어있지 않다면
-        cout << right.front(); //오른쪽 맨 첫 원소를 출력
-        right.pop_front(); //첫 원소 제거
-    }
     while (!left.empty()) { //왼쪽이 비어있지 않다면
-        cout << left.front(); //왼쪽 첫번째 원소 출력
-        left.pop_front(); //첫 원소 제거
+//        cout << left.front(); //왼쪽 첫번째 원소 출력
+//        left.pop_front(); //첫 원소 제거
+        answer += left.front();
+        left.pop_front();
     }
+    while (!right.empty()) { //오른쪽이 비어있지 않다면
+//        cout << right.front(); //오른쪽 맨 첫 원소를 출력
+//        right.pop_front(); //첫 원소 제거
+        answer += right.front();
+        right.pop_front();
+    }
+
+    return answer;
 }
 
 int main() {
@@ -44,7 +50,7 @@ int main() {
     cin >> t;
     while (t--) {
         cin >> str;
-        password(str);
+        cout << password(str) << '\n';
     }
     return 0;
 }
