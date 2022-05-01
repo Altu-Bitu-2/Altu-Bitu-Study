@@ -30,7 +30,7 @@ void bfs(int n) {
 int main() {
     int n;
     cin >> n;
-    v.assign(100001, vector<int>(2, 0));
+    v.assign(100001, vector<int> (0));
     visited.assign(100001, false);
     parent.assign(100001, 0);
     for (int i = 1; i < n; i++) {
