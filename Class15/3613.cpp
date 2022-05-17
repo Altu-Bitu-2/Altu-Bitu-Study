@@ -19,15 +19,13 @@ void convertToC(string &s) { //C로 변경
 
 void convertToJava(string &s) { //자바로 변경
     string res;
-    for (int i = 0; i < s.size();) {
-        if (s[i] != '_') { //언더바가 아니면
-            res += s[i]; //해당 문자 추가
-            i++; //다음 문자로 이동
-        }
+    for (int i = 0; i < s.size(); i++) {
         if (s[i] == '_') { //언더바면
             res += toupper(s[i + 1]); //다음 문자를 대문자로 변경해 추가
-            i = i + 2; //다음문자 건너뛰기
+            i++; //다음문자 건너뛰기
+            continue;
         }
+        res += s[i]; //해당 문자 추가
     }
     cout << res;
 }

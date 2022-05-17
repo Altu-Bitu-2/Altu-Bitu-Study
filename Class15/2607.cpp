@@ -4,24 +4,27 @@
 using namespace std;
 
 bool isSimilar(vector<int> &first, vector<int> &compare) {
-//    int zero_cnt = 0;
     int one_cnt = 0;
-    int more_cnt = 0;
+    int first_len = 0;
+    int compare_len = 0;
     for (int i = 0; i < 26; i++) { //모든 알파벳 비교하면서
-//        if (abs(first[i] - compare[i]) == 0) { //개수 차이가 0이면 같은 알파벳 개수가 동일
-//            zero_cnt++;
-//        }
+        if (first[i] != 0) { //길이 구하기
+            first_len++;
+        }
+        if (compare[i] != 0) {
+            compare_len++;
+        }
         if (abs(first[i] - compare[i]) == 1) { //알파벳 개수가 1차이면 비슷한 단어일 가능성
             one_cnt++;
         }
-        if (abs(first[i] - compare[i]) > 1) { //알파벳 개수가 2이상 차이나면
-            more_cnt++;
+        if (abs(first[i] - compare[i]) > 1) { //알파벳 개수가 2이상 차이나면 만족하지 않음
+            return false;
         }
     }
-    if (one_cnt > 1 || more_cnt > 0) { //하나의 문자 차이로 해결되지 않는 경우면
-        return false;
+    if ((first_len == compare_len && one_cnt == 2) || one_cnt <= 1) { //한 문자가 다른 문자로 대치 가능하거나 단어 한개를 추가/삭제하는 것이 가능하면
+        return true; //true리턴
     }
-    return true;
+    return false;
 }
 
 int main() {
@@ -41,6 +44,7 @@ int main() {
         for (int j = 0; j < compare_word.size(); j++) {
             compare[compare_word[j] - 'A']++;
         }
+        cout << compare_word << ' ';
         if (isSimilar(first, compare)) {
             cnt++;
         }
